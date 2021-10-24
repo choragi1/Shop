@@ -1,11 +1,12 @@
 /*eslint-disable*/
 import React, { useState } from "react";
-import Data from "../../../Data/Data";
 import {Link} from "react-router-dom";
+import axios from "axios";
+import '../../../App.css'
 
-function MainPage() {
+function MainPage(props) {
 
-  let [shoes, setShoes] = useState(Data);
+  let [loading, setLoading] = useState(false);
 
   return (
     <div>
@@ -23,11 +24,27 @@ function MainPage() {
       </div>
       <div className="container">
         <div className="row">
-          {shoes.map((data, i) => {
+          {props.shoes.map((data, i) => {
             return <Card shoes={data} i={i} />;
           })}
         </div>
       </div>
+      <button className="btn btn-outline-primary" onClick={()=>{
+        setLoading(true)
+        axios.get('https://codingapple1.github.io/shop/data2.json')
+        .then((result)=>{console.log(result.data)
+        props.setShoes([...props.shoes, ...result.data])
+        setLoading(false)
+        })
+        .catch(()=>{console.log('로딩 실패')})
+      }}>
+        더보기</button>
+        {
+          loading===true
+          ? <LoadingAlert />
+          : null
+        }
+        
     </div>
   );
 }
@@ -47,6 +64,14 @@ function Card(props) {
       <p>{props.shoes.content}</p>
     </div>
   );
+}
+
+function LoadingAlert(props) {
+  return (
+    <div className="my-alert">
+      <p>로딩중입니다.</p>
+    </div>
+  )
 }
 
 export default MainPage;

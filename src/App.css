@@ -2,6 +2,20 @@
   text-align: center;
 }
 
+.my-alert{
+  background : moccasin;
+  padding : 20px;
+  border-radius : 5px;
+  max-width: 500px;
+  width : 100%;
+  margin : auto
+}
+
+.my-alert p{
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
 
 .jumbotron {
   width: 100%;

@@ -19,10 +19,14 @@ function App() {
     <div className="App">
         <NavBar />
         <Switch>
-          <Route exact path="/" component={MainPage} />
+          <Route exact path="/">
+            <MainPage shoes={shoes} setShoes={setShoes} />
+          </Route>
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/register" component={RegisterPage} />
-          <Route exact path="/detail/:id" component={DetailPage} />
+          <Route exact path="/detail/:id">
+            <DetailPage shoes={shoes} setShoes={setShoes} />
+          </Route>
         </Switch>
         <Footer />
     </div>
