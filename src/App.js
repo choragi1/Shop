@@ -10,6 +10,7 @@ import RegisterPage from "./components/views/RegisterPage/RegisterPage";
 import DetailPage from "./components/views/DetailPage/DetailPage";
 import Footer from "./components/views/Footer/Footer";
 import Data from "./Data/Data";
+import UploadProductPage from "./components/views/UploadProductPage/UploadProductPage";
 
 function App() {
   let [shoes, setShoes] = useState(Data);
@@ -26,6 +27,7 @@ function App() {
         <Route exact path="/detail/:id">
           <DetailPage shoes={shoes} setShoes={setShoes} />
         </Route>
+        <Route exact path="/product/upload" component={UploadProductPage} />
       </Switch>
       <Footer />
     </div>
