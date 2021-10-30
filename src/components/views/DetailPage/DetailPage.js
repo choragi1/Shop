@@ -67,7 +67,7 @@ function DetailPage(props) {
               </Nav.Item>
             </Nav>
             
-            <CSSTransition in={onOff} classNames="tab" timeout={5000}>
+            <CSSTransition in={onOff} classNames="tab" timeout={500}>
               <TabContent selectTab={selectTab} setOnOff={setOnOff}/>
             </CSSTransition>
 

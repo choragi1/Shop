@@ -11,3 +11,14 @@
     margin-bottom: 0px;
     font-weight: bold;
 }
+
+.tab-enter {
+    opacity: 0;
+
+}
+
+.tab-enter-active {
+    opacity: 1;
+    transition: all 500ms;
+
+}
