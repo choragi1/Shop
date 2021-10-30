@@ -1,8 +1,10 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { Nav } from 'react-bootstrap'
 import styled from 'styled-components'
 import './Detail.css'
+import { CSSTransition } from 'react-transition-group'
 
 let Title = styled.h4`
   font-size : 25px;
@@ -15,6 +17,8 @@ function DetailPage(props) {
     let history = useHistory();
     let [alert,setAlert] = useState(true);
     let [input,setInput]  = useState('');
+    let [selectTab,setSelectTab] = useState(0);
+    let [onOff, setOnOff] = useState(false);
 
     useEffect(()=>{
       let timer = setTimeout(() => {setAlert(false)}, 2000);
@@ -42,12 +46,51 @@ function DetailPage(props) {
             <h4 className="pt-5">{props.shoes[id].title}</h4>
             <p>{props.shoes[id].content}</p>
             <p>{props.shoes[id].price}</p>
+            
             <button className="btn btn-outline-primary">주문하기</button>
             <button className="btn btn-outline-danger" onClick={() => { history.goBack()}}> 뒤로가기 </button>
         </div>
       </div>
+
+      <Nav className="mt-5" variant="tabs" defaultActiveKey="link-0">
+              <Nav.Item>
+                <Nav.Link eventKey="link-0" onClick={()=>{setOnOff(false); setSelectTab(0)}}>상품상세</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="link-1" onClick={()=>{setOnOff(false); setSelectTab(1)}}>상품평</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="link-2" onClick={()=>{setOnOff(false); setSelectTab(2)}}>상품문의</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="link-3" onClick={()=>{setOnOff(false); setSelectTab(3)}}>배송/교환/반품</Nav.Link>
+              </Nav.Item>
+            </Nav>
+            
+            <CSSTransition in={onOff} classNames="tab" timeout={5000}>
+              <TabContent selectTab={selectTab} setOnOff={setOnOff}/>
+            </CSSTransition>
+
     </div>
   );
+}
+
+function TabContent(props){
+
+  useEffect(()=>{
+    props.setOnOff(true) 
+  });
+
+  if(props.selectTab===0){
+    return <div className="mt-5">상품상세 탭입니다.</div>
+  } else if(props.selectTab===1){
+    return <div className="mt-5">상품평 탭입니다.</div>
+  } else if(props.selectTab===2){
+    return <div className="mt-5">상품문의 탭입니다.</div>
+  } else if(props.selectTab===3){
+    return <div className="mt-5">배송/교환/반품 탭입니다.</div>
+  }
+
 }
 
 export default DetailPage;
