@@ -16,7 +16,6 @@ function DetailPage(props) {
     let {id} = useParams();
     let history = useHistory();
     let [alert,setAlert] = useState(true);
-    let [input,setInput]  = useState('');
     let [selectTab,setSelectTab] = useState(0);
     let [onOff, setOnOff] = useState(false);
 
@@ -28,11 +27,9 @@ function DetailPage(props) {
     return (
         <div className="container">
             <Title color={"red"}>Detail</Title>
-            {input}
-            <input onChange={(e)=>{setInput(e.target.value)}} />
 
             {
-              alert===true
+              alert===true && props.shoes[id].stock<=10
               ?<div className="my-alert">
               <p>재고가 얼마 남지 않았습니다.</p>
               </div>            
@@ -45,7 +42,8 @@ function DetailPage(props) {
             <div className="col-md-6 mt-4">
             <h4 className="pt-5">{props.shoes[id].title}</h4>
             <p>{props.shoes[id].content}</p>
-            <p>{props.shoes[id].price}</p>
+            <p>가격 : {props.shoes[id].price.toLocaleString()}원</p>
+            <p>재고 : {props.shoes[id].stock}개</p>
             
             <button className="btn btn-outline-primary">주문하기</button>
             <button className="btn btn-outline-danger" onClick={() => { history.goBack()}}> 뒤로가기 </button>

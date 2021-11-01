@@ -11,9 +11,12 @@ import DetailPage from "./components/views/DetailPage/DetailPage";
 import Footer from "./components/views/Footer/Footer";
 import Data from "./Data/Data";
 import UploadProductPage from "./components/views/UploadProductPage/UploadProductPage";
+import CartPage from "./components/views/CartPage/CartPage";
+
 
 function App() {
   let [shoes, setShoes] = useState(Data);
+  let [Stock, setStock] = useState([10,11,12])
 
   return (
     <div className="App">
@@ -24,6 +27,7 @@ function App() {
         </Route>
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/register" component={RegisterPage} />
+        <Route exact path="/cart" component={CartPage} />
         <Route exact path="/detail/:id">
           <DetailPage shoes={shoes} setShoes={setShoes} />
         </Route>

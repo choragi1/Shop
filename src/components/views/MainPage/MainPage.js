@@ -1,11 +1,12 @@
 /*eslint-disable*/
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../../../App.css";
 
 function MainPage(props) {
   let [loading, setLoading] = useState(false);
+  
 
   return (
     <div>
