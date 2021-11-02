@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, {useState} from "react";
 import "./UploadProductPage.css";
 import { Form, Button } from "react-bootstrap";

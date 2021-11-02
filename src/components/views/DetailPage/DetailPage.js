@@ -5,6 +5,7 @@ import { Nav } from 'react-bootstrap'
 import styled from 'styled-components'
 import './Detail.css'
 import { CSSTransition } from 'react-transition-group'
+import { connect } from "react-redux";
 
 let Title = styled.h4`
   font-size : 25px;
@@ -46,6 +47,12 @@ function DetailPage(props) {
             <p>재고 : {props.shoes[id].stock}개</p>
             
             <button className="btn btn-outline-primary">주문하기</button>
+            &nbsp;
+            <button className="btn btn-outline-primary" onClick={()=>{ 
+              props.dispatch({type : 'productToCart', payload : props.shoes[id] })
+              history.push('/cart')
+              }}>장바구니</button>
+              &nbsp;
             <button className="btn btn-outline-danger" onClick={() => { history.goBack()}}> 뒤로가기 </button>
         </div>
       </div>
@@ -91,4 +98,11 @@ function TabContent(props){
 
 }
 
-export default DetailPage;
+
+function mapStateToProps(state){
+  return {
+      state
+  }
+}
+
+export default connect(mapStateToProps)(DetailPage)

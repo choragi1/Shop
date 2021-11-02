@@ -1,12 +1,19 @@
+/* eslint-disable */
 import React, { useState } from 'react'
 import {Table} from 'react-bootstrap'
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import {Button} from 'react-bootstrap'
 import '../../../App.css'
 
 function CartPage(props) {
 
   let [DiscountAlert, setDiscountAlert] = useState(true);
+
+
+  // 리액트 안에 있던 모든 state
+  let state = useSelector((state)=>{ return state })
+  let dispatch = useDispatch();
+  console.log(state)
 
     return (
       <div>
@@ -21,15 +28,15 @@ function CartPage(props) {
           </thead>
           <tbody>
             {
-            props.state.map((data,i)=>{
+            state.map((data,i)=>{
               return (
             <tr key={i}>
               <td>{data.id}</td>
               <td>{data.title}</td>
               <td>{data.quan}</td>
               <td>
-                <Button variant="outline-primary" onClick={()=>{ props.dispatch({ type : 'increaseQuan' }) }}>+</Button>
-                <Button variant="outline-primary" onClick={()=>{ props.dispatch({ type : 'decreaseQuan' }) }}>-</Button>  
+                <Button variant="outline-primary" onClick={()=>{ dispatch({ type : 'increaseQuan', payload : i }) }}>+</Button>
+                <Button variant="outline-primary" onClick={()=>{ dispatch({ type : 'decreaseQuan', payload : i }) }}>-</Button>  
               </td>
               
             </tr>
@@ -51,11 +58,11 @@ function CartPage(props) {
     );
 }
 
-function mapStateToProps(state){
-    return {
-        state
-    }
-}
+// function mapStateToProps(state){
+//     return {
+//         state
+//     }
+// }
 
 function Modal(props){
   return (
@@ -66,4 +73,5 @@ function Modal(props){
   )
 }
 
-export default connect(mapStateToProps)(CartPage)
+// export default connect(mapStateToProps)(CartPage)
+export default CartPage
