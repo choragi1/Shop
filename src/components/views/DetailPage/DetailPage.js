@@ -5,7 +5,7 @@ import { Nav } from 'react-bootstrap'
 import styled from 'styled-components'
 import './Detail.css'
 import { CSSTransition } from 'react-transition-group'
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 
 let Title = styled.h4`
   font-size : 25px;
@@ -14,23 +14,37 @@ let Title = styled.h4`
 
 function DetailPage(props) {
   
-    let {id} = useParams();
-    let history = useHistory();
-    let [alert,setAlert] = useState(true);
-    let [selectTab,setSelectTab] = useState(0);
-    let [onOff, setOnOff] = useState(false);
+ let state = useSelector((state)=>{return state})
+ let dispatch = useDispatch();
+  
+  useEffect(()=>{
+    let timer = setTimeout(() => {setAlert(false)}, 2000);
+    return ()=>{clearTimeout(timer)}
+  },[])
+  
+  let {id} = useParams();
+  let history = useHistory();
+  let [Alert,setAlert] = useState(true);
+  let [selectTab,setSelectTab] = useState(0);
+  let [onOff, setOnOff] = useState(false);
+  let [Quantity, setQuantity] = useState(0);
 
-    useEffect(()=>{
-      let timer = setTimeout(() => {setAlert(false)}, 2000);
-      return ()=>{clearTimeout(timer)}
-    },[])
+  const quantityChangeHandler = (event) => {
+    if(event.target.value<=props.shoes[id].stock){
+    setQuantity(event.target.value)
+    }else{
+      alert('재고 수량 이상은 주문 할 수 없습니다.')
+      setQuantity(0)
+      event.target.value=''
+    }
+  }
     
     return (
         <div className="container">
             <Title color={"red"}>Detail</Title>
 
             {
-              alert===true && props.shoes[id].stock<=10
+              Alert===true && props.shoes[id].stock<=10
               ?<div className="my-alert">
               <p>재고가 얼마 남지 않았습니다.</p>
               </div>            
@@ -44,12 +58,13 @@ function DetailPage(props) {
             <h4 className="pt-5">{props.shoes[id].title}</h4>
             <p>{props.shoes[id].content}</p>
             <p>가격 : {props.shoes[id].price.toLocaleString()}원</p>
+            <p>수량 : <input type="number" pattern="\d*" onChange={quantityChangeHandler} />개</p>
             <p>재고 : {props.shoes[id].stock}개</p>
             
             <button className="btn btn-outline-primary">주문하기</button>
             &nbsp;
             <button className="btn btn-outline-primary" onClick={()=>{ 
-              props.dispatch({type : 'productToCart', payload : props.shoes[id] })
+              dispatch({type : 'productToCart', payload : {id : props.shoes[id].id, title : props.shoes[id].title ,price : props.shoes[id].price , quan : Quantity} })
               history.push('/cart')
               }}>장바구니</button>
               &nbsp;
@@ -99,10 +114,4 @@ function TabContent(props){
 }
 
 
-function mapStateToProps(state){
-  return {
-      state
-  }
-}
-
-export default connect(mapStateToProps)(DetailPage)
+export default DetailPage

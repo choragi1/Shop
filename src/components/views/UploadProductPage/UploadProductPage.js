@@ -9,7 +9,7 @@ function UploadProductPage() {
     const [Title, setTitle] = useState('')
     const [Description, setDescription] = useState('')
     const [Price, setPrice] = useState(0)
-    const [Select, setSelect] = useState(1)
+    const [Category, setCategory] = useState(1)
     const [Images, setImages] = useState([])
     const Type = [
         { key : 1, value : "의류/잡화"},
@@ -42,8 +42,8 @@ function UploadProductPage() {
         setPrice(event.target.value)
     }
     
-    const selectChangeHandler = (event) => {
-        setSelect(event.target.value)
+    const categoryChangeHandler = (event) => {
+        setCategory(event.target.value)
     }
     
 
@@ -59,10 +59,10 @@ function UploadProductPage() {
         <FileUpload />
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-          <Form.Label>구분</Form.Label>
+          <Form.Label>상품구분</Form.Label>
           <Form.Select
             aria-label="Default select example"
-            onChange={selectChangeHandler}
+            onChange={categoryChangeHandler}
           >
             {Type.map((item) => {
               return (
@@ -73,6 +73,7 @@ function UploadProductPage() {
             })}
           </Form.Select>
         </Form.Group>
+        
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>상품명</Form.Label>
           <Form.Control
@@ -81,6 +82,7 @@ function UploadProductPage() {
             onChange={titleChangeHandler}
           />
         </Form.Group>
+
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label>설명</Form.Label>
           <Form.Control
@@ -90,6 +92,7 @@ function UploadProductPage() {
             onChange={descriptionChangeHandler}
           />
         </Form.Group>
+        
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
           <Form.Label>가격(원)</Form.Label>
           <Form.Control

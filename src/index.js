@@ -13,12 +13,13 @@ let defaultState = Data;
 function reducer(state = defaultState, action){
     if(action.type==='productToCart'){
       let found = state.findIndex((data)=>{ return data.id === action.payload.id })
-      console.log(found)
+      let quan = parseInt(action.payload.quan)
       if(found>=0){
         let copy = [...state];
-        copy[found].quan++;
+        console.log(copy[found])
+        console.log(quan)
+        copy[found].quan += quan
         return copy
-
       } else {
       let copy = [...state];
       copy.push(action.payload);

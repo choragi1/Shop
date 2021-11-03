@@ -15,7 +15,7 @@ export default [
       content : "Born in Seoul",
       price : 110000,
       stock : 26,
-      quan : 2,
+      quan : 1,
     },
   
     {
@@ -24,6 +24,6 @@ export default [
       content : "Born in the States",
       price : 130000,
       stock : 8,
-      quan : 4,
+      quan : 1,
     }
   ] 

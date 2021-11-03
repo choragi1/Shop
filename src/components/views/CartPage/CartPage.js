@@ -13,7 +13,6 @@ function CartPage(props) {
   // 리액트 안에 있던 모든 state
   let state = useSelector((state)=>{ return state })
   let dispatch = useDispatch();
-  console.log(state)
 
     return (
       <div>
