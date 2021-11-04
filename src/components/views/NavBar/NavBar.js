@@ -12,21 +12,26 @@ function NavBar() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                <Nav.Link as={Link} to="/register">Register</Nav.Link>
-                <Nav.Link as={Link} to="/cart">Cart</Nav.Link>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Something
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
+                <Nav.Link as={Link} to="/login">로그인</Nav.Link>
+                <Nav.Link as={Link} to="/register">회원가입</Nav.Link>
+                <Nav.Link as={Link} to="/cart">장바구니</Nav.Link>
+                <NavDropdown title="카테고리" id="basic-nav-dropdown">
+                  <NavDropdown.Item as={Link} to="/product/clothes">의류/잡화</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/beauty">뷰티</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/babies">출산/유아용품</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/foods">식품</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/kitchen">주방용품</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/living">생활용품</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/home">홈/인테리어</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/digital">가전/디지털</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/sports">스포츠/레저</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/car">차량용품</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/books">도서/음반/CD</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/hobby">취미/완구</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/office">문구/오피스</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/pet">반려동물용품</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/health">헬스/건강식품</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/product/travel">여행/티켓</NavDropdown.Item>
                 </NavDropdown>
               </Nav>
             </Navbar.Collapse>

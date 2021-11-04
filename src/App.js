@@ -12,7 +12,7 @@ import Footer from "./components/views/Footer/Footer";
 import Data from "./Data/Data";
 import UploadProductPage from "./components/views/UploadProductPage/UploadProductPage";
 import CartPage from "./components/views/CartPage/CartPage";
-
+import ErrorPage from "./components/views/ErrorPage/ErrorPage"
 
 function App() {
   let [shoes, setShoes] = useState(Data);
@@ -32,6 +32,7 @@ function App() {
           <DetailPage shoes={shoes} setShoes={setShoes} />
         </Route>
         <Route exact path="/product/upload" component={UploadProductPage} />
+        <Route component={ErrorPage} />
       </Switch>
       <Footer />
     </div>
