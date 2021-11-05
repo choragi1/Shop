@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import Data from './Data/Data.js'
+import { BrowserRouter } from 'react-router-dom';
 
 
 let defaultState = Data;
@@ -54,11 +55,13 @@ let store = createStore(reducer)
 
 ReactDOM.render(
   <React.StrictMode>
+    <BrowserRouter>
     <Router>
       <Provider store={store}>
         <App />
       </Provider>
     </Router>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
